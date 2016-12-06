@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
   # deviseが自動生成するルーティング
-
+  resources :tweets, only: [:index, :create, :destroy] do
+    resource :favorites, only: [:create, :destroy]
+  end
   # ツイート一覧画面へのルーティングを定義
 
 
@@ -11,7 +14,6 @@ Rails.application.routes.draw do
     # resources :users, only: [:index, :show] do
     # end
 
-
   #お気に入り機能をツイートに紐付ける場合  
     # resources :tweets do
       # resource :favorites
@@ -20,6 +22,6 @@ Rails.application.routes.draw do
 
 
 # ルートパス　でアクセスした時にツイート一覧へのルーティングを定義
-
+  root "tweets#index"
 
 end
