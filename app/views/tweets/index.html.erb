@@ -9,7 +9,7 @@
               <span class="user-name">
                 <strong>
                   <!-- ↓current_userのemailを表示しよう -->
-                  <%= current_user.email %>
+                  <%= link_to current_user.email, user_path(current_user) %>
                 </strong>
               </span>
             </div>

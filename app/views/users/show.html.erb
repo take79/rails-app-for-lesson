@@ -8,7 +8,7 @@
 		<% end %>
 		<span class="user-name">
 			<!-- ユーザーのemailを表示 -->
-			
+      <%= @user.email %>
 		</span>
 	</div>
 	<ul class="nav nav-tabs nav-justified">
@@ -19,7 +19,7 @@
 				</div>
 				<div class="num">
 					<!-- ユーザーのツイートを数えて表示 -->
-
+          <%= @user.tweets.count %>
 				</div>
 			<% end %>	
 		</li>		
@@ -31,7 +31,7 @@
 			</div>
 			<div class="num">
 				<!-- ユーザーのお気に入りを数えて表示 -->
-
+        <%= @user.favorites.count %>
 			</div>
 		<% end %>
 		</li>
@@ -44,12 +44,12 @@
 		</div>
 
 		<!-- ユーザーに紐付いたツイートを取得し、eachメソッドでツイート分表示 -->
-
+    <% @user.tweets.each do |t| %>
 			<div class="list-group-item">
 				<h4 class="user">
 					<span class="user-name">
 						<!-- link_toを使用しユーザーページへのリンクを作る（表示するテキストはemails） -->
-
+            <%= link_to t.user.email, user_path(t.user) %>
 					</span>
 					<span class="time pull-right">
 						<%= distance_of_time_in_words_to_now(t.created_at) %>
@@ -59,11 +59,11 @@
 				<div class="tweet-content">
 					<p>
 						<!-- ツイートのcontentを表示 -->
-
+            <%= t.body %>
 					</p>
 				</div>
 			</div>
-
+    <% end %>
 		<!-- each終わり -->
 	</div>	
 </div>

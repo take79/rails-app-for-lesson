@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   end
   # ツイート一覧画面へのルーティングを定義
 
+  resources :users, only: [:index, :show]
 
+  get "users/:id/favorites", to: "users#favorites", as: "favorites_user"
 
 # ---------------------------------------------
 # 発展課題
