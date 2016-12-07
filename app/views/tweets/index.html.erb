@@ -52,7 +52,15 @@
         </div>
       <% end %>
       <!-- ↑signed_in?のif文をendで閉じる -->
-    </div>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <%= search_form_for @q do |sf| %>
+              <%= sf.search_field :body_cont, placeholder: "ツイート内容を検索" %>
+              <%= sf.submit "検索する" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
 
     <!-- ↓ここから右カラム -->
     <div class="col-sm-8 right-content">

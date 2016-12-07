@@ -4,7 +4,8 @@ class TweetsController < ApplicationController
   # ヒント: authenticate_〇〇!（deviseのヘルパーメソッド）
 
   def index
-    @tweets = Tweet.all.order("created_at DESC").page(params[:page]).per(10)
+    @q = Tweet.search(params[:q])
+    @tweets = @q.result(distinct: true).order("created_at DESC").page(params[:page]).per(10)
     # allを使ってTweetの全レコードの取得しインスタンス変数に格納
       #→ ページングする場合は...  →  参照：「ページング機能を実装しよう」
         #→  並び順かえたい場合は...  →  「rails order」で検索
